@@ -27,10 +27,6 @@ export const approveAndDeposit = async ({
     try {
         onStatus('CHECKING');
 
-        const browserProvider = new ethers.BrowserProvider(provider);
-        const signer = await browserProvider.getSigner();
-
-
         const usdc = new ethers.Contract(USDC_ADDRESS, ERC20_ABI, provider);
         const vault = new ethers.Contract(VAULT_ADDRESS, VAULT_ABI, signer);
 
@@ -44,12 +40,8 @@ export const approveAndDeposit = async ({
             onStatus('APPROVING');
 
             const usdcWithSigner = usdc.connect(signer);
-            const approveTx = await usdcWithSigner.approve(
-                VAULT_ADDRESS,
-                parsedAmount
-            );
-
-            await approveTx.wait();
+            //const approveTx = await usdcWithSigner.approve(VAULT_ADDRESS,parsedAmount);
+            //await approveTx.wait();
         }
 
         // 3️⃣ Deposit
@@ -68,4 +60,3 @@ export const approveAndDeposit = async ({
         throw err;
     }
 };
-

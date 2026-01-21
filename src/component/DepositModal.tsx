@@ -65,7 +65,7 @@ export const DepositModal = ({
     };
 
     const handleAction = async () => {
-        if (!amount || parseFloat(amount) <= 0) return;
+        if (amount.length == 0 || parseFloat(amount) <= 0) return;
 
         try {
             Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
@@ -110,7 +110,7 @@ export const DepositModal = ({
         }
     };
 
-    const isProcessing = ['CHECKING', 'APPROVING', 'DEPOSITING', 'WITHDRAWING'].includes(status);
+    const isProcessing = Boolean(['CHECKING', 'APPROVING', 'DEPOSITING', 'WITHDRAWING'].includes(status));
 
     const renderTabs = () => (
         <View style={styles.tabContainer}>

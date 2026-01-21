@@ -10,6 +10,7 @@ export const theme = {
         text: '#FFFFFF',
         textSecondary: '#A0A0A0',
         border: '#333333',
+        warning:'yellow',
 
         // Vault Specific
         stable: '#4CAF50',

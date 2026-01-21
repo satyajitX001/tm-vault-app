@@ -19,6 +19,8 @@ This is a premium React Native mobile application for Token Metrics Vaults, buil
    - Real-time status updates (Checking → Approving → Depositing → Success).
    - Input with "Max" and percentage buttons.
    - Haptic feedback and estimated share calculation.
+   
+   “The deposit flow explicitly models ERC20 allowance checks and separates approval and deposit into independent on-chain transactions. Each transaction state (checking, approving, pending, confirmed, rejected, failed) is reflected in the mobile UI.”
 
 4. **Network Handling**:
    - Detects if the wallet is on the wrong network.

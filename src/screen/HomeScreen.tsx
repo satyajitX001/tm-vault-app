@@ -5,6 +5,7 @@ import { checkNetwork, switchNetwork } from "../web3/network";
 import { approveAndDeposit, TxStatus } from "../web3/approveDeposit";
 import { getProviderAndSigner } from '../web3/provider';
 import { VaultCard, VaultCardProps } from "../component/VaultCard";
+import ConnectWalletButton from "../component/ConnectWalletButton";
 
 const vaults: VaultCardProps[] = [
     {
@@ -76,7 +77,7 @@ const HomeScreen = () => {
             return;
         }
 
-       
+
 
         const { signer } = await getProviderAndSigner(provider);
         if (!provider || !address) {
@@ -105,18 +106,19 @@ const HomeScreen = () => {
     return (
         <View style={{ flex: 1, justifyContent: 'space-between', marginVertical: 30, paddingHorizontal: 16 }}>
             <View style={{ padding: 16 }}>
-                {isConnected && address ? (
+                {ConnectWalletButton()}
+                {/* {isConnected && address ? (
                     <View>
                         <Text style={{ fontWeight: '600' }}>Connected Wallet</Text>
                         <Text>{truncateAddress(address)}</Text>
                     </View>
                 ) : (
                     <Text>Wallet not connected</Text>
-                )}
+                )} */}
             </View>
 
             <FlatList data={vaults}
-                keyExtractor={(item) => item.type}
+                keyExtractor={(item) => String(item.type)}
                 renderItem={({ item }) => (
                     <VaultCard {...item} onPress={handleDeposit} />
                 )} />
